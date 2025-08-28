@@ -1,0 +1,258 @@
+:root {
+  --bg-1: #0f172a;
+  --bg-2: #134e4a;
+  --card: #0f172ab3;
+  --card-hover: #0f172ae6;
+  --border: #ec48994d; 
+  --border-soft: #2dd4bf33; 
+  --text: #f1f5f9; 
+  --muted: #94a3b8;
+  --muted-2: #64748b;
+  --primary-1: #14b8a6;
+  --primary-2: #ec4899;
+  --success-1: #22c55e;
+  --success-2: #86efac;
+  --danger: #e11d48;
+  --ring: #14b8a64d;
+  --transition: 200ms ease;
+  --transition-slow: 300ms ease;
+}
+
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: linear-gradient(135deg, var(--bg-1), var(--bg-2), var(--bg-1));
+  background-attachment: fixed;
+}
+
+/* Page layout */
+.page {
+  min-height: 100vh;
+  padding: 16px;
+}
+.container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  padding-top: 32px;
+  margin-bottom: 32px;
+}
+.title {
+  margin: 0 0 8px;
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, var(--primary-1), var(--primary-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+.stats-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(15, 23, 42, 0.5);
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+/* Add input */
+.add-wrapper {
+  position: relative;
+  margin-bottom: 32px;
+}
+.input {
+  width: 100%;
+  color: white;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid var(--border);
+  padding: 14px 48px 14px 20px;
+  border-radius: 18px;
+  outline: none;
+  transition: border var(--transition), box-shadow var(--transition);
+}
+.input::placeholder { color: var(--muted); }
+.input:focus {
+  border-color: rgba(168, 85, 247, 0.5);
+  box-shadow: var(--ring);
+}
+.add-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  padding: 8px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  transition: transform var(--transition), filter var(--transition), box-shadow var(--transition);
+}
+.add-btn:hover { transform: translateY(-50%) scale(1.05); filter: brightness(1.05); }
+.add-btn:focus { box-shadow: var(--ring); outline: none; }
+
+/* List & cards */
+.list { display: grid; gap: 12px; }
+
+.todo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-2xl);
+  padding: 16px;
+  backdrop-filter: blur(6px);
+  transition: border-color var(--transition-slow), background var(--transition-slow), opacity var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+.todo-card:hover {
+  border-color: var(--border-soft);
+  background: var(--card-hover);
+}
+.todo-card.is-completed { opacity: 0.75; }
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Checkbox */
+.checkbox {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: 2px solid #6b7280; /* slate-500 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.checkbox:hover { border-color: #94a3b8; }
+.checkbox.is-checked {
+  background: linear-gradient(90deg, var(--success-2), var(--success-1));
+  border-color: var(--success-1);
+}
+.check-icon {
+  animation: zoomIn 200ms ease;
+}
+@keyframes zoomIn {
+  from { transform: scale(0.6); opacity: 0.6; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* Content */
+.content { flex: 1 1 auto; min-width: 0; }
+
+.edit-input {
+  width: 100%;
+  color: white;
+  background: rgba(51, 65, 85, 0.8);
+  border: 1px solid #475569; /* slate-600 */
+  padding: 8px 10px;
+  border-radius: 10px;
+  outline: none;
+  transition: border var(--transition), box-shadow var(--transition);
+}
+.edit-input:focus {
+  border-color: #a855f7; /* purple-500 */
+  box-shadow: var(--ring);
+}
+
+.text-wrapper { cursor: pointer; }
+.text {
+  margin: 0;
+  transition: color var(--transition);
+}
+.todo-card:hover .text:not(.text-completed) { color: #f1f5f9; } /* slate-100 */
+.text-completed {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.meta {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted-2);
+  font-size: 12px;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  gap: 8px;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.todo-card:hover .actions { opacity: 1; }
+.actions.show { opacity: 1; } /* always visible while editing */
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  transition: color var(--transition), background var(--transition);
+}
+.icon-btn:hover { color: #60a5fa; }          /* edit hover blue-ish */
+.icon-btn.danger:hover { color: #f87171; }   /* delete/cancel hover red */
+.icon-btn.success:hover { color: #34d399; }  /* save hover green */
+
+/* Empty state */
+.empty { text-align: center; padding: 48px 0; }
+.empty-card {
+  display: inline-block;
+  background: rgba(30, 41, 59, 0.3);
+  border: 1px solid rgba(51, 65, 85, 0.3);
+  padding: 32px;
+  border-radius: var(--radius-2xl);
+  backdrop-filter: blur(6px);
+}
+.empty-circle {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(59,130,246,0.2), rgba(139,92,246,0.2));
+}
+.empty-icon { color: #64748b; }
+.empty-title { margin: 0 0 8px; color: #94a3b8; font-size: 1.125rem; }
+.empty-subtitle { margin: 0; color: #64748b; font-size: 0.9rem; }
+
+/* Footer */
+.footer { margin-top: 32px; text-align: center; }
+.footer-text { color: var(--muted-2); font-size: 0.9rem; margin: 0; }
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .add-btn,
+  .checkbox,
+  .todo-card,
+  .text {
+    transition: none;
+  }
+  .check-icon { animation: none; }
+}
