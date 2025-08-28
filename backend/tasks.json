@@ -1,0 +1,20 @@
+[
+  {
+    "id": "ErX52oehhVjbsWx7BeUcI",
+    "text": "Estudar Node.js",
+    "completed": false,
+    "createdAt": "2025-08-28T18:05:15.972Z"
+  },
+  {
+    "id": "Ep5w4eq8yBx-L0l6dgQyo",
+    "text": "Estudar React.js",
+    "completed": false,
+    "createdAt": "2025-08-28T20:13:15.784Z"
+  },
+  {
+    "id": "iN0se4hbfi12MnEnxvYG9",
+    "text": "Estudar Angular.js",
+    "completed": false,
+    "createdAt": "2025-08-28T20:13:26.069Z"
+  }
+]
